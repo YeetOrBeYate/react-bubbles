@@ -28,9 +28,6 @@ const ColorList = ({ colors, updateColors, setChange }) => {
 
   const saveEdit = e => {
     e.preventDefault();
-    // Make a put request to save your updated color
-    // think about where will you get the id from...
-    // where is is saved right now?
     const Authy = axiosWithAuth();
 
     Authy.put(`http://localhost:5000/api/colors/${colorToEdit.id}`, colorToEdit)
@@ -44,7 +41,18 @@ const ColorList = ({ colors, updateColors, setChange }) => {
   };
 
   const deleteColor = color => {
-    // make a delete request to delete this color
+
+    console.log("delete func",color)
+    const Yeet = axiosWithAuth();
+
+    Yeet.delete(`http://localhost:5000/api/colors/${color.id}`, color)
+      .then((res)=>{
+        console.log("delete yes", res)
+        setChange();
+      })
+      .catch((err)=>[
+        console.log("delte no", err)
+      ])
   };
 
   return (
@@ -59,7 +67,7 @@ const ColorList = ({ colors, updateColors, setChange }) => {
                     deleteColor(color)
                   }
                 }>
-                  x
+                  XXXX
               </span>{" "}
               {color.color}
             </span>
